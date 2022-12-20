@@ -1,0 +1,13 @@
+스테이지 : 수정사항을 깃허브에 올리기 전에 최종선택하는 과정?
+커밋 : 수정사항을 깃허브에 가상으로 설명해놓기?
+푸쉬 : 수정사항 파일을 실제로 덮어쓰기
+
+git hub clone 한 폴더에서 git bash here 하면 터미널? 이 암
+
+예시 ) KGA_03@DESKTOP-VTV1TQG MINGW64 /c/bspark/FirstReop/main (main)
+
+.gitignore csharp
+
+git add .  전부 다올리기
+
+git status 스테이지 올린거 보기

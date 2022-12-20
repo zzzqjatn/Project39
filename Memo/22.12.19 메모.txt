@@ -1,0 +1,35 @@
+https://thebook.io/006890/
+
+시작 : 
+
+끝 :
+
+Convert.int32 무슨 차이냐?
+ 8로 나눠보면 된다 (1byte 는 8bit 로 만들어져있기 때문에)
+
+int16 = 2byte 
+int32 = 4byte
+int64 = 8byte
+
+const 상수화 되면 메모리에서도 볼수 없다(주소값 자체가 없음)
+
+https://2-nan.tistory.com/43
+
+convert.Toint32 = 실수형 문자열을 바꿀려고 하면 데이터메모리 부족?으로 FormatException 에러 뜬다?
+int.TryParse 쓰는 FormatException 에러가 없다?
+
+값타입 참조타입 운영형식?
+https://tsyang.tistory.com/10
+https://ongoing-yang.tistory.com/18
+
+https://mathmakeworld.tistory.com/79  //이거 좋다
+값 타입의 변수를 다른 값 타입의 변수로 대입하면 필드 단위로 하나씩 복제가 이뤄진다. 그러나 참조 타입의 변수끼리 대입이 발생하면 단순히 메모리 주소만 복제된다.
+값 타입이 박싱되지 않은 상태로 할당되면 메서드와 함께 선언되고 할당되기 때문에, 메서드의 실행이 끝나자마자 메모리가 할당 해지된다. 반면 참조 타입은 GC를 만달 때까지 기다린다.
+
+새로운 메인 설정
+프로젝트 제외 Main 2개 분리
+
+
+랜덤 요소 
+랜덤은 시드값을 받는다.
+https://learn.microsoft.com/ko-kr/dotnet/api/system.random?view=net-7.0
