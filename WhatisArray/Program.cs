@@ -719,8 +719,17 @@ namespace WhatisArray
             //int number5 = 5;
 
             //Console.WriteLine(numbers);
-            
+
             // 프로그램은 여기서 끝난다.
+
+
+
+
+            //----------22.12.22----------
+            //모드 연산자
+
+            int number = 1_0821;
+            Console.WriteLine("64로 Mod 연산 {0}", number % 64);
         }
     }
 }
