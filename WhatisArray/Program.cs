@@ -244,6 +244,43 @@ namespace WhatisArray
             //    }       //loop: 이건 밖의 루프가 1번 도는 동안 10번을 도는 루프
             //}       // loop : 10번을 도는 루프
 
+            /*
+             * 
+             * 유저 입력 받아서 (1~20 줄 이내로 입력 받음) 유저입력은 줄, 단의 개수임
+                등차 수열로 한 단이 내려갈 때마다 별1개씩 추가로 증가하는 프로그램 작성
+                EX)
+                	userinput : 5
+                *
+                **
+                ***
+                ****
+                *****
+                
+                어려운거 이번엔 마름모 형식으로입력
+                3
+                
+                	*
+                   ***
+                    *
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
+             */
 
             //Console.WriteLine();
             //Console.WriteLine();
@@ -326,6 +363,7 @@ namespace WhatisArray
             //else { /*Do nothing*/}
 
             ///////
+            ///숫자야구
             //컴퓨터가 랜덤한 3자리 수를 같고 있고
             /*
              * 
@@ -532,7 +570,9 @@ namespace WhatisArray
             int ballnumber1, ballnumber2, ballnumber3;
             int mynumber1, mynumber2, mynumber3;
 
-            int BallCount = 0, StrikeCount = 0, life = 9; ;
+            int BallCount = 0;
+            int StrikeCount = 0;
+            int life = 9;
 
 
             //랜덤값 받기
@@ -551,58 +591,83 @@ namespace WhatisArray
                 }
                 else break;
             }
+            Console.WriteLine($"{ballnumber1}, {ballnumber2}, {ballnumber3}");
 
-            //사용자 입력값 받기 오류처리
+
             while (true)
             {
-                int InputNum;
-                int.TryParse(Console.ReadLine(), out InputNum);
-
-                if (10 > (InputNum / 100) && InputNum >= 0)
+                Console.WriteLine($"현재 기회 : {life}");
+                //사용자 입력값 받기 오류처리
+                while (true)
                 {
-                    mynumber1 = InputNum / 100;
-                    mynumber2 = (InputNum - (100 * mynumber1)) / 10;
-                    mynumber3 = InputNum % 10;
+                    int InputNum;
+                    int.TryParse(Console.ReadLine(), out InputNum);
+
+                    if (10 > (InputNum / 100) && InputNum >= 0)
+                    {
+                        mynumber1 = InputNum / 100;
+                        mynumber2 = (InputNum - (100 * mynumber1)) / 10;
+                        mynumber3 = InputNum % 10;
+
+                        if (mynumber1.Equals(mynumber2) || mynumber1.Equals(mynumber2) || mynumber2.Equals(mynumber3))
+                        {
+                            Console.WriteLine("중복값 에러 발생");
+                            continue;
+                        }
+                        else break;
+                    }
+                    Console.WriteLine("잘못된 범위 밖 값 입니다");
+                }
+
+                if (life <= 1)
+                {
+                    Console.WriteLine("소진된 기회를 다 사용하셨습니다.");
                     break;
                 }
-                Console.WriteLine("잘못된 범위 밖 값 입니다");
-            }
-
-            while (true)
-            {
-                if (life < 1) break;
+                else if(ballnumber1.Equals(mynumber1) && ballnumber2.Equals(mynumber2) && ballnumber3.Equals(mynumber3))
+                {
+                    Console.WriteLine("정답입니다.");
+                    break;
+                }
 
                 BallCount = 0;
                 StrikeCount = 0;
 
-                if (ballnumber1.Equals(mynumber1) || ballnumber2.Equals(mynumber2) || ballnumber3.Equals(mynumber3))
+                if (ballnumber1.Equals(mynumber1))
                 {
                     StrikeCount++;
                 }
 
-                if (ballnumber1 != mynumber1 && ballnumber2.Equals(mynumber1) || ballnumber1 != mynumber1 && ballnumber3.Equals(mynumber1))
+                if (ballnumber2.Equals(mynumber2))
+                {
+                    StrikeCount++;
+                }
+
+                if (ballnumber3.Equals(mynumber3))
+                {
+                    StrikeCount++;
+                }
+
+                if (ballnumber1 != mynumber1 && ballnumber2.Equals(mynumber1) || 
+                    ballnumber1 != mynumber1 && ballnumber3.Equals(mynumber1))
                 {
                     BallCount++;
                 }
 
+                if (ballnumber2 != mynumber2 && ballnumber1.Equals(mynumber2) ||
+                    ballnumber2 != mynumber2 && ballnumber3.Equals(mynumber2))
+                {
+                    BallCount++;
+                }
 
-
+                if (ballnumber3 != mynumber3 && ballnumber1.Equals(mynumber3) ||
+                    ballnumber3 != mynumber3 && ballnumber2.Equals(mynumber3))
+                {
+                    BallCount++;
+                }
+                Console.WriteLine($"BALL : {BallCount}, STRIKE : {StrikeCount}");
                 life--;
             }
-
-
-            //for(int MaxCounter = 1; MaxCounter < 10; MaxCounter++)
-            //{
-            //    if (MaxCounter == 10)
-            //    {
-            //        Console.WriteLine("소진 기회 모두 사용");
-            //    }
-            //    else if(MaxCounter < 10 && )
-            //    {
-            //        Console.WriteLine("정답");
-            //    }
-
-            //}
             Console.WriteLine($"{ballnumber1}, {ballnumber2}, {ballnumber3}");
 
 
@@ -632,7 +697,7 @@ namespace WhatisArray
 
 
             //배열의 선언과 초기화
-            int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
+            //int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
 
             ////numbers.Length
             //Console.WriteLine(numbers[numbers.Length - 1]);
@@ -653,8 +718,8 @@ namespace WhatisArray
             //int number4 = 4;
             //int number5 = 5;
 
-            Console.WriteLine(numbers);
-
+            //Console.WriteLine(numbers);
+            
             // 프로그램은 여기서 끝난다.
         }
     }
