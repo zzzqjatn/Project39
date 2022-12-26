@@ -222,11 +222,24 @@ namespace Life_of_adventurer
             isStoryEnd = true;
 
             int myAttackPoint = 0;
-            int enemyAttackPoint = 0;
-            int enemyHealth = 0;
+            int myHP = 0;
             string matchPointText = "";
 
-            //int TurnPoint
+            int selectMon = 0;
+            string[] Monster = { "오크", "늑대", "고블린", "슬라임" };
+            int[] MonsAtk = { 30, 10, 15, 5 };
+            int[] MonsHP = { 150, 100, 80, 50 };
+
+            string[] MonsText = { "나를 보자마자 위협적인 동작으로 걸어오기 시작한다",
+                                  "나를 본듯 으르렁거리기 시작한다",
+                                  "바위 뒤에 숨어서 나를 지켜본다",
+                                  "점점 내쪽으로 다가온다"};
+
+            int maptype = 0;
+            maptype = rand.Next(1, 3 + 1);
+            selectMon = rand.Next(1, 3 + 1);
+
+            myHP = Health * stat[4] * 10;
 
             while (isStoryEnd)
             {
@@ -235,184 +248,124 @@ namespace Life_of_adventurer
                 Console.WriteLine($"\t스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
                 Console.WriteLine();
 
-                situationType = rand.Next(1, 3 + 1);
                 myAttackPoint = stat[0] + stat[1] + stat[2]; //나의 전투력은 힘 민첩 지능 합산
 
-                switch (situationType)
+                if ((myAttackPoint + myHP) > (MonsAtk[selectMon] + MonsHP[selectMon] + 10)) matchPointText = "우세";
+                else if ((myAttackPoint + myHP) < (MonsAtk[selectMon] + MonsHP[selectMon] - 10)) matchPointText = "열세";
+                else matchPointText = "비등";
+
+                switch (maptype)
                 {
                     case 1:
-                        enemyAttackPoint = 30;
-                        enemyHealth = 350;
-
-                        if (myAttackPoint + Health > enemyAttackPoint + enemyHealth + 10) matchPointText = "우세";
-                        else if (myAttackPoint + Health < enemyAttackPoint + enemyHealth - 10) matchPointText = "열세";
-                        else matchPointText = "비등";
-
-                        //오크
+                        //동굴
                         Console.WriteLine("\t");
-                        Console.WriteLine("\t동굴을 지나던 도중 외다리에서 오크를 만났다");
-                        Console.WriteLine("\t나를 보자마자 위협적인 동작으로 걸어오기 시작한다");
-                        Console.WriteLine("\t=====================================================");
-                        Console.WriteLine($"\t 전투시작 (승리확률 : {matchPointText})");
-                        Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                        Console.ReadKey();  //버튼 누르기
-                        Console.Clear();    //출력화면 클리어
-                        
-                        while(true)
-                        {
-                            //전투 시작
-
-
-
-                        }
-                        //if (UserInput == 1)
-                        //{
-                        //    eventSuccess = rand.Next(1, 100 + 1);
-                        //    if ((stat[5] * myProbability / 10) < eventSuccess)
-                        //    {
-                        //        Console.WriteLine("\t=====================================================");
-                        //        Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                        //        Console.WriteLine();
-                        //        Console.WriteLine("\t");
-                        //        Console.WriteLine("\t이런 마지막 가시 덩굴에 발이 걸렸습니다.");
-                        //        Console.WriteLine("\t그냥 돌아갈껄 그랬습니다.");
-                        //        Console.WriteLine("\t패널티 : 체력 - 1 / 현재 체력 {0}, 현재 난수 {1}", --Health, eventSuccess);
-                        //        Console.WriteLine("\t=====================================================");
-                        //        Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                        //        Console.ReadKey();  //버튼 누르기
-                        //        Console.Clear();    //출력화면 클리어
-                        //    }
-                        //    else
-                        //    {
-                        //        Console.WriteLine("\t=====================================================");
-                        //        Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                        //        Console.WriteLine();
-                        //        Console.WriteLine("\t");
-                        //        Console.WriteLine("\t마지막 덩쿨에 걸릴 껄 운좋게 피했습니다");
-                        //        Console.WriteLine("\t덕분에 더욱 빠르게 왔습니다");
-                        //        Console.WriteLine("\t현재 체력 {0} 현재 난수 {1}", Health, eventSuccess);
-                        //        Console.WriteLine("\t=====================================================");
-                        //        Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                        //        Console.ReadKey();  //버튼 누르기
-                        //        Console.Clear();    //출력화면 클리어
-                        //    }
-                        //}
-                        //isStoryEnd = false;
+                        Console.Write("\t동굴을 지나던 도중 외다리에서");
                         break;
                     case 2:
+                        //풀숲
                         Console.WriteLine("\t");
-                        Console.WriteLine("\t패널티 선택지");
-                        Console.WriteLine("\t낡은 폐허건물을 지나게 되었다.");
-                        Console.WriteLine("\t내부에 가지덩굴이 있다.");
-                        Console.WriteLine("\t아마 잘못 지나가면 다칠 수 있을 것 같다");
-                        Console.WriteLine("\t=====================================================");
-                        Console.WriteLine($"\t 1. 그냥 지나간다 (지혜 : {stat[5]}, 성공확률 : {stat[5] * myProbability / 10} %) 현재 난수 : {myProbability}");
-                        Console.WriteLine($"\t 2. 돌아간다");
-
-                        //예외처리
-                        while (true)
-                        {
-                            Console.Write("\t선택 : ");  //버튼 키 입력 안내문
-                            int.TryParse(Console.ReadLine(), out UserInput);
-                            if (UserInput > 0 && 3 > UserInput) break;
-
-                            Console.WriteLine("\t\t\t\t잘못된 입력값입니다.");
-                        }
-                        Console.Clear();    //출력화면 클리어
-                        //패널티 선택지
-
-                        if (UserInput == 1)
-                        {
-                            eventSuccess = rand.Next(1, 100 + 1);
-                            if ((stat[5] * myProbability / 10) < eventSuccess)
-                            {
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                                Console.WriteLine();
-                                Console.WriteLine("\t");
-                                Console.WriteLine("\t이런 마지막 가시 덩굴에 발이 걸렸습니다.");
-                                Console.WriteLine("\t그냥 돌아갈껄 그랬습니다.");
-                                Console.WriteLine("\t패널티 : 체력 - 1 / 현재 체력 {0}, 현재 난수 {1}", --Health, eventSuccess);
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                                Console.ReadKey();  //버튼 누르기
-                                Console.Clear();    //출력화면 클리어
-                            }
-                            else
-                            {
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                                Console.WriteLine();
-                                Console.WriteLine("\t");
-                                Console.WriteLine("\t마지막 덩쿨에 걸릴 껄 운좋게 피했습니다");
-                                Console.WriteLine("\t덕분에 더욱 빠르게 왔습니다");
-                                Console.WriteLine("\t현재 체력 {0} 현재 난수 {1}", Health, eventSuccess);
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                                Console.ReadKey();  //버튼 누르기
-                                Console.Clear();    //출력화면 클리어
-                            }
-                        }
-                        //isStoryEnd = false;
+                        Console.Write("\t풀 숲을 지나던 도중 갈림길에서");
                         break;
                     case 3:
+                        //사막
                         Console.WriteLine("\t");
-                        Console.WriteLine("\t보너스 선택지");
-                        Console.WriteLine("\t길거리 한복판에 상자가 떨어져 있다");
-                        Console.WriteLine("\t아무래도 수상해보이는 상자다");
-                        Console.WriteLine("\t무엇이 있는 지 확인해 볼까?");
-                        Console.WriteLine("\t=====================================================");
-                        Console.WriteLine($"\t 1. 힘껏 상자를 연다 (힘 : {stat[0]}, 성공확률 : {stat[0] * myProbability / 10} %) , 성공시 : 힘의물약 획득 현재 난수 : {myProbability}");
-                        Console.WriteLine($"\t 2. 돌아간다");
-
-                        //예외처리
-                        while (true)
-                        {
-                            Console.Write("\t선택 : ");  //버튼 키 입력 안내문
-                            int.TryParse(Console.ReadLine(), out UserInput);
-                            if (UserInput > 0 && 3 > UserInput) break;
-
-                            Console.WriteLine("\t\t\t\t잘못된 입력값입니다.");
-                        }
-                        Console.Clear();    //출력화면 클리어
-                        //패널티 선택지
-
-                        if (UserInput == 1)
-                        {
-                            eventSuccess = rand.Next(1, 100 + 1);
-                            if ((stat[5] * myProbability / 10) < eventSuccess)
-                            {
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                                Console.WriteLine();
-                                Console.WriteLine("\t");
-                                Console.WriteLine("\t아쉽게도 열리지 않았다");
-                                Console.WriteLine("\t흔들어보면 뭔가 들어있긴 한듯하다");
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                                Console.ReadKey();  //버튼 누르기
-                                Console.Clear();    //출력화면 클리어
-                            }
-                            else
-                            {
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine($"\t이름 {name} 현재 스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
-                                Console.WriteLine();
-                                Console.WriteLine("\t");
-                                Console.WriteLine("\t있는 힘껏 열어 상자가 부서졌다");
-                                Console.WriteLine("\t하지만 그 중 가장 비싼 포션 힘의 물약이 들어있었다");
-                                Console.WriteLine("\t마셔서 힘스텟이 1증가했다");
-                                Console.WriteLine("\t현재 기존 힘스텟 {0}, 현재 힘스텟 {1} 현재 난수 {2}", stat[0]++, stat[0], eventSuccess);
-                                Console.WriteLine("\t=====================================================");
-                                Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
-                                Console.ReadKey();  //버튼 누르기
-                                Console.Clear();    //출력화면 클리어
-                            }
-                        }
-                        //isStoryEnd = false;
+                        Console.Write("\t사막을 지나던 도중 거친 모래바람 사이에서");
                         break;
                 }
+                Console.WriteLine("{0}를 만났다", Monster[selectMon]);
+                Console.WriteLine("\t{0}", MonsText[selectMon]);
+                Console.WriteLine("\t=====================================================");
+                Console.WriteLine("\t플레이어의 공격력 {0}, HP {1}  {2}의 공격력 {3}, HP {4}", myAttackPoint, myHP, Monster[selectMon],MonsAtk[selectMon], MonsHP[selectMon]);
+                Console.WriteLine($"\t 전투시작 (승리확률 : {matchPointText})");
+                Console.WriteLine("\t진행하시려면 아무키나 눌려주세요");  //버튼 키 입력 안내문
+                Console.ReadKey();  //버튼 누르기
+                Console.Clear();    //출력화면 클리어
+                isStoryEnd = false;
             }
+
+            int turnnig = 0;
+
+            int atkFrom = 0;
+            int hpTo = 0;
+
+            int missPoint = 0;
+
+            Console.WriteLine("\t=====================================================");
+            Console.WriteLine($"\t이름 {name}, 체력 {Health}, 정신력 {Mental} ");
+            Console.WriteLine($"\t스텟은 힘 : {stat[0]}, 민첩 : {stat[1]}, 지능 : {stat[2]},카리스마 {stat[3]},건강 {stat[4]},지혜 {stat[5]} 입니다.");
+
+            //전투시작
+            while (true)
+            {
+                if ((myAttackPoint + myHP) > (MonsAtk[selectMon] + MonsHP[selectMon] + 10)) matchPointText = "우세";
+                else if ((myAttackPoint + myHP) < (MonsAtk[selectMon] + MonsHP[selectMon] - 10)) matchPointText = "열세";
+                else matchPointText = "비등";
+                Console.WriteLine("\t=====================================================");
+                Console.WriteLine($"\t 플레이어 HP : {myHP} , {Monster[selectMon]} HP : {MonsHP[selectMon]}");
+                Console.WriteLine($"\t 전투시작 (승리확률 : {matchPointText})");
+
+                missPoint = rand.Next(1, 100 + 1);
+
+                if (turnnig == 0)
+                {
+                    atkFrom = MonsAtk[selectMon];
+                    hpTo = myHP;
+                }
+                else if(turnnig == 1)
+                {
+                    atkFrom = myAttackPoint;
+                    hpTo = MonsHP[selectMon];
+                }
+
+                if(missPoint < 30)
+                {
+                    if (turnnig == 0)
+                    {
+                        Console.WriteLine("\t{0}가 플레이어의 공격을 피했습니다. 난수 : {1}", Monster[selectMon], missPoint);
+                        turnnig = 1;
+                    }
+                    else if (turnnig == 1)
+                    {
+                        Console.WriteLine("\t플레이어가 {0}의 공격을 피했습니다. 난수 : {1}", Monster[selectMon], missPoint);
+                        turnnig = 0;
+                    }
+                }
+                else
+                {
+                    hpTo -= atkFrom;
+
+                    if (turnnig == 0)
+                    {
+                        myHP = hpTo;
+                        Console.WriteLine("\t{0}가 플레이어에게 {1} 데미지를 주었습니다.", Monster[selectMon], MonsAtk[selectMon]);
+                        turnnig = 1;
+                    }
+                    else if (turnnig == 1)
+                    {
+                        MonsHP[selectMon] = hpTo;
+                        Console.WriteLine("\t플레이어가 {0}에게 {1} 데미지를 주었습니다.", Monster[selectMon], myAttackPoint);
+                        turnnig = 0;
+                    }
+                }
+                
+                if(myHP < 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("\t플레이어가 패배했습니다");
+                    Console.WriteLine("\t패배로 인해 체력이 하나 떨어집니다.");
+                    Console.WriteLine("\t기존 체력 : {0} -> 현재 체력 {1}", Health, Health -= 1);
+                    break;
+                }
+                else if(MonsHP[selectMon] < 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("\t플레이어가 승리했습니다");
+                    Console.WriteLine("\t현재 체력 : {0}", Health);
+                    break;
+                }
+
+            }
+
         }
     }
 }
