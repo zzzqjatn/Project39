@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <Compile Remove="homework.cs" />
+    <Compile Remove="MineGame.cs" />
     <Compile Remove="Program.cs" />
+    <Compile Remove="Program2.cs" />
     <Compile Remove="TicTakToe.cs" />
   </ItemGroup>
 
