@@ -38,7 +38,7 @@ namespace WhatisFunction
                 }
             }
             drawMap(Map, moveCounter, ref drawRecycle);     //맵 그리는 함수
-            mixMap(3, ref Map, ref playerX, ref playerY, ref drawRecycle);  //자리를 섞어주는 함수
+            mixMap(6, ref Map, ref playerX, ref playerY, ref drawRecycle);  //자리를 섞어주는 함수
 
             //게임 진행 loop
             while (!isGameOver)
@@ -247,7 +247,7 @@ namespace WhatisFunction
                             case -1:    //-1 값은 플레이어
                                 Console.Write("  X  ".PadRight(5, ' '), MAP_[y, x]);
                                 break;
-                            default:
+                            default:    //나머지값은 그대로 출력
                                 Console.Write("  {0}  ".PadRight(5, ' '), MAP_[y, x]);
                                 break;
                         }
@@ -255,27 +255,29 @@ namespace WhatisFunction
                     Console.WriteLine();
                     Console.WriteLine();
                 }
+                //하단 출력문
                 Console.WriteLine("\t=============================================");
-                Console.WriteLine("\t                움직인 횟수 : {0}", moveCounter_);
+                Console.WriteLine("\t                움직인 횟수 : {0}", moveCounter_);  //움직인 횟수 출력문
                 Console.WriteLine("\t=============================================");
-                isdraw = false;
+                isdraw = false; //그려준 뒤 그리기 갱신값 false
             }
         }
 
+        //게임 완료 검사 함수(게임종료 bool값 참조, 가변 배열 값 복사)
         static void finish(ref bool isGameOver, int[,] MAP_)
         {
-            for(int y = 0; y <= MAP_.GetUpperBound(0); y++)
+            for(int y = 0; y <= MAP_.GetUpperBound(0); y++)     //맵의 y축 반복문
             {
-                for(int x = 0; x <= MAP_.GetUpperBound(1); x++)
+                for(int x = 0; x <= MAP_.GetUpperBound(1); x++) //맵의 x축 반복문
                 {
-                    if (y == MAP_SIZE_Y - 1 && x == MAP_SIZE_X - 1)
+                    if (y == MAP_SIZE_Y - 1 && x == MAP_SIZE_X - 1) //만약 현재 int[3,3] 배열에서 [2,2] 끝 지점에 왔을 때 (0부터 시작이기 때문에 0 ~ 2)
                     {
-                        if (MAP_[y,x] == -1) isGameOver = true;
+                        if (MAP_[y,x] == -1) isGameOver = true; //게임종료 bool 값 true로 변경
                     }
-                    else if (MAP_[y, x] != y * MAP_SIZE_Y + x + 1)
+                    else if (MAP_[y, x] != y * MAP_SIZE_Y + x + 1)  //배열의 값이 순차적인 (맞는)값이 아닐 경우
                     {
-                        isGameOver = false;
-                        break;
+                        isGameOver = false; //게임종료 false 후
+                        break;  //반복문 나가기 (계속 진행)
                     }
                 }
             }
