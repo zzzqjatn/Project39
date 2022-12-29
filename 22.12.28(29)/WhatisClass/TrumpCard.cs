@@ -7,6 +7,10 @@ namespace WhatisClass
         private int[] trumpCardset; //내가 사용할 카드 세트
         private string[] trumpCardMark; //트럼프 카드의 마크
 
+        public TrumpCard()
+        {
+            SetupTrumpCards();
+        }
         public void SetupTrumpCards()
         {
             trumpCardset = new int[52];
@@ -31,13 +35,6 @@ namespace WhatisClass
             ShuffleCards();
             Rollcard();
         }   //ReRollcard()
-
-        //셔플하고 카드 한장 정수값으로 주는 함수
-        public string[] ReNumberRollCard()
-        {
-            ShuffleCards();
-            return Rollcard_();
-        }   //ReNumberRollCard()
 
         //! 한장의 카드를 뽑아서 보여주는 함수
         public void Rollcard()
@@ -72,20 +69,7 @@ namespace WhatisClass
             Console.WriteLine(" -----");
 
         }   //Rollcard()
-
-        public string[] Rollcard_()
-        {
-            int card = trumpCardset[0];
-            string cardMark = trumpCardMark[(card - 1) / 13];
-            string cardnumber = Math.Ceiling(card % 13.1).ToString();
-            //13.1 나누기는 0번 예외처리를 위해
-
-            string[] temp = { cardMark, cardnumber };
-
-            return temp;
-        }   //Rollcard_()
         //! 한장의 카드를 뽑아서 숫자 보내는 주는 함수
-
 
         //! 카드를 섞는 함수
         private void ShuffleCards(int howManyLoop)
@@ -119,11 +103,26 @@ namespace WhatisClass
             return intArray;
         }   // ShuffleOnce()
 
-
-        public void PrintCheck()
+        //--------기존 함수에서 변형하여 새로만든 함수--------//
+        
+        //셔플하고 카드 한장 문자열 배열값으로 주는 함수
+        public string[] ReStringRollCard()
         {
-            Console.WriteLine("Main 메서드에서 호출이 가능한지?");
-        }   // PrintCheck
+            ShuffleCards();
+            return Rollcard_String();
+        }   //ReNumberRollCard()
 
+        //문자열값 [카드마크, 카드번호] 를 반환해주는 함수
+        public string[] Rollcard_String()
+        {
+            int card = trumpCardset[0];
+            string cardMark = trumpCardMark[(card - 1) / 13];
+            string cardnumber = Math.Ceiling(card % 13.1).ToString();
+            //13.1 나누기는 0번 예외처리를 위해
+
+            string[] temp = { cardMark, cardnumber };
+
+            return temp;
+        }   //Rollcard_()
     }
 }
