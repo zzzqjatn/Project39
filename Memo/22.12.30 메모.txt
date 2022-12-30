@@ -1,0 +1,41 @@
+26일 과제  : 옷 움직이기 (코인 먹기 추가)
+
+10 x 10 으로 만들며 '$' 이런게 등장하게 되며 캐릭터가 먹으면 상단에
+코인 : 몇개먹음
+
+랜덤하게 쓰레드 슬립? 오토
+랜덤으로 300ms 일때 $ 생성?
+
+C버튼을 눌렀을때 움직이지 않는 상태로 1군데 코인 생기게 되고
+
+-------------------------------------------------------------------------
+
+윈폼 화면 (Paint이벤트)갱신 
+ https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.forms.control.invalidate?view=windowsdesktop-7.0
+https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.forms.control.update?view=windowsdesktop-7.0
+https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.refresh?view=windowsdesktop-7.0
+
+더블 버퍼링
+https://coding-factory.tistory.com/692
+https://github.com/gui-cs/Terminal.Gui 기괴
+https://www.reddit.com/r/csharp/comments/ox19m2/imementing_double_screen_buffer_in_c_console/
+https://stackoverflow.com/questions/28490246/console-clear-blinking
+{
+https://stackoverflow.com/questions/28490246/console-clear-blinking
+https://learn.microsoft.com/en-us/dotnet/api/system.console.bufferheight?redirectedfrom=MSDN&view=net-7.0#System_Console_BufferHeight
+https://learn.microsoft.com/en-us/dotnet/api/system.console.setcursorposition?redirectedfrom=MSDN&view=net-7.0#System_Console_SetCursorPosition_System_Int32_System_Int32_
+https://learn.microsoft.com/en-us/dotnet/api/system.console.movebufferarea?redirectedfrom=MSDN&view=net-7.0#System_Console_MoveBufferArea_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+}
+
+
+task 비동기/ 동기 관련 asnyc? await?
+https://kukuta.tistory.com/363
+https://learn.microsoft.com/ko-kr/dotnet/api/system.threading.tasks.task.-ctor?view=net-7.0
+https://learn.microsoft.com/ko-kr/dotnet/api/system.iasyncresult.iscompleted?view=net-7.0#system-iasyncresult-iscompleted
+https://learn.microsoft.com/ko-kr/dotnet/csharp/programming-guide/concepts/async/task-asynchronous-programming-model
+https://codingcoding.tistory.com/415
+https://kangworld.tistory.com/24
+https://thebook.io/006890/part04/ch56/05/
+https://qzqz.tistory.com/260
+https://www.csharpstudy.com/Threads/task.aspx
+
